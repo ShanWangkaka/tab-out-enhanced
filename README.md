@@ -100,14 +100,19 @@ MIT
 
 ## 🙏 Credits & Acknowledgements
 
-This project is an enhanced version of the original [Tab Out](https://github.com/zarazhangrui/tab-out) created by [Zara](https://x.com/zarazhangrui).
+### Standing on the Shoulders of Giants 🌟
+
+This project builds upon the wonderful work of the original [Tab Out](https://github.com/zarazhangrui/tab-out) created by [Zara](https://x.com/zarazhangrui).
+
+> "If I have seen further, it is by standing on the shoulders of giants."
+> — Isaac Newton
 
 **Original Project:**
 - Creator: Zara Zhang
 - Repository: https://github.com/zarazhangrui/tab-out
 - Twitter: https://x.com/zarazhangrui
 
-Thank you Zara for creating such a wonderful project! 🙏
+Thank you Zara for creating such a beautiful and useful project! Standing on your shoulders, I've been able to further enhance this extension with new features! 🙏❤️
 
 ---
 
