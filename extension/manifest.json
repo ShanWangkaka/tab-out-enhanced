@@ -1,0 +1,25 @@
+{
+  "manifest_version": 3,
+  "name": "Tab Out Enhanced",
+  "version": "1.0.0",
+  "description": "Keep tabs on your tabs with weather, bookmarks, search, and more! Beautiful new tab page with enhanced features.",
+  "permissions": ["tabs", "activeTab", "storage", "bookmarks"],
+  "host_permissions": ["https://wttr.in/*"],
+  "chrome_url_overrides": { "newtab": "index.html" },
+  "background": { "service_worker": "background.js" },
+  "action": {
+    "default_title": "Tab Out",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png"
+    }
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com"
+  }
+}

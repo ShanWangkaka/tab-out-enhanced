@@ -1,0 +1,114 @@
+# Tab Out Enhanced
+
+**Keep tabs on your tabs with weather, bookmarks, search, and more!**
+
+Tab Out Enhanced is a beautiful Chrome extension that replaces your new tab page with a dashboard of everything you have open. Tabs are grouped by domain, with homepages (Gmail, X, LinkedIn, etc.) pulled into their own group. Close tabs with a satisfying swoosh + confetti. Enhanced with weather, bookmarks, search, and beautiful UI!
+
+---
+
+## ✨ Features
+
+### Core Features
+- **See all your tabs at a glance** on a clean grid, grouped by domain
+- **Homepages group** pulls Gmail inbox, X home, YouTube, LinkedIn, GitHub homepages into one card
+- **Close tabs with style** with swoosh sound + confetti burst
+- **Duplicate detection** flags when you have the same page open twice, with one-click cleanup
+- **Click any tab to jump to it** across windows, no new tab opened
+- **Save for later** bookmark tabs to a checklist before closing them
+- **Localhost grouping** shows port numbers next to each tab so you can tell your vibe coding projects apart
+- **Expandable groups** show the first 8 tabs with a clickable "+N more"
+- **100% local** your data never leaves your machine
+- **Pure Chrome extension** no server, no Node.js, no npm, no setup beyond loading the extension
+
+### Enhanced Features (Enhanced)
+- 🌤️ **Real-time Weather** - Shows your local weather with cute emojis
+- 📚 **Chrome Bookmarks** - Display your bookmarks at the top, with folder support and drag-to-reorder
+- 🔍 **Google Search** - Quick search bar to search Google or type URLs directly
+- 🌿 **Beautiful Background** - Green plant leaf decoration for a fresh look
+- 🌙 **Dark Mode** - Eye-friendly dark theme
+- 🎆 **Spectacular Fireworks** - Enhanced confetti effects when closing tabs
+- 🎉 **Festival Reminders** - Automatic festival detection with cute animations
+
+---
+
+## 📸 Screenshots
+
+![Tab Out Enhanced - Beautiful new tab page with bookmarks, weather, search, and more!]
+
+*Beautiful interface with bookmarks, weather, search, and tab management!*
+
+
+
+---
+
+## 🚀 Manual Setup
+
+**1. Clone the repo**
+
+```bash
+git clone <your-repo-url.git
+```
+
+**2. Load the Chrome extension**
+
+1. Open Chrome and go to `chrome://extensions`
+2. Enable **Developer mode** (top-right toggle)
+3. Click **Load unpacked**
+4. Navigate to the `extension/` folder inside the cloned repo and select it
+
+**3. Open a new tab**
+
+You'll see Tab Out.
+
+---
+
+## 📖 How it works
+
+```
+You open a new tab
+  -> Tab Out shows your open tabs grouped by domain
+  -> Homepages (Gmail, X, etc.) get their own group at the top
+  -> Real-time weather and festival info displayed
+  -> Your Chrome bookmarks at the top (drag to reorder!)
+  -> Google search bar for quick searching
+  -> Click any tab title to jump to it
+  -> Close groups you're done with (swoosh + spectacular fireworks!)
+  -> Save tabs for later before closing them
+```
+
+Everything runs inside the Chrome extension. Saved tabs are stored in `chrome.storage.local`. Weather data from wttr.in (free, no API key required).
+
+---
+
+## 🛠️ Tech stack
+
+| What | How |
+|------|-----|
+| Extension | Chrome Manifest V3 |
+| Storage | chrome.storage.local |
+| Sound | Web Audio API (synthesized, no files) |
+| Animations | CSS transitions + JS confetti particles |
+| Weather | wttr.in (free API) |
+
+---
+
+## 📄 License
+
+MIT
+
+---
+
+## 🙏 Credits & Acknowledgements
+
+This project is an enhanced version of the original [Tab Out](https://github.com/zarazhangrui/tab-out) created by [Zara](https://x.com/zarazhangrui).
+
+**Original Project:**
+- Creator: Zara Zhang
+- Repository: https://github.com/zarazhangrui/tab-out
+- Twitter: https://x.com/zarazhangrui
+
+Thank you Zara for creating such a wonderful project! 🙏
+
+---
+
+Built by [ShanWangkaka](https://github.com/ShanWangkaka) with ❤️
