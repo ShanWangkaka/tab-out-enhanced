@@ -33,9 +33,15 @@ Tab Out Enhanced is a beautiful Chrome extension that replaces your new tab page
 
 ## 📸 Screenshots
 
-![Tab Out Enhanced - Beautiful new tab page with bookmarks, weather, search, and more!]
+![Tab Out Enhanced - Beautiful new tab page with bookmarks, weather, search, and more!](screenshots/screenshot.png)
 
 *Beautiful interface with bookmarks, weather, search, and tab management!*
+
+### How to add your own screenshots:
+1. Open a new tab in Chrome to see Tab Out Enhanced
+2. Take a screenshot (Mac: `Cmd + Shift + 4`; Windows: `Win + Shift + S`)
+3. Save the screenshot as `screenshots/screenshot.png`
+4. Add more screenshots to the `screenshots/` folder and update this README!
 
 
 
