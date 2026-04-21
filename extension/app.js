@@ -503,13 +503,324 @@ function timeAgo(dateStr) {
 }
 
 /**
- * getGreeting() — "Good morning / afternoon / evening"
+ * getGreeting() — "Good morning / afternoon / evening" + name
  */
 function getGreeting() {
   const hour = new Date().getHours();
-  if (hour < 12) return 'Good morning';
-  if (hour < 17) return 'Good afternoon';
-  return 'Good evening';
+  let greeting;
+  if (hour < 12) greeting = 'Good morning';
+  else if (hour < 17) greeting = 'Good afternoon';
+  else greeting = 'Good evening';
+  return greeting;
+}
+
+/**
+ * 每日激励语句
+ */
+const dailyQuotes = [
+  "The wind waits, the flowers bloom, year after year 🌿",
+  "Take your time, the best is yet to come 🌙",
+  "The mountain is high, the road is long, take it easy 🏔️",
+  "A gentle breeze blows, ripples not rising 🍃",
+  "Mountains and seas in the heart, boundless peace 🌊",
+  "Flowers half-open, wine half-drunk 🌸",
+  "Spring has flowers, autumn has moon 🌙",
+  "The flowers are blooming, take your time 🌺",
+  "Simple joys are the sweetest 🍵",
+  "Walk to the water's edge, sit and watch the clouds rise ☁️",
+  "Where the heart is, there is the sea 🏝️",
+  "Time knows its flavor, years leave their scent ⏳",
+  "Slowly, but surely 🐢",
+  "Flowers bloom and leaves fall, all are scenery 🍂",
+  "Peaceful heart, gentle smile 😊",
+  "Half hustle, half serenity 🌟",
+  "Life is bright, everything is hopeful 🌈",
+  "Time is gentle, everything is possible 🎐",
+  "Seasons change, beauty remains 🍁",
+  "In the mountains, pine wine, spring tea 🍵",
+  "Spring hears birds, summer hears cicadas 🐦",
+  "Autumn hears crickets, winter hears snow ❄️",
+  "Time is silent, wait for the flowers to bloom 🌼",
+  "Clouds in the sky, water in the bottle ☁️",
+  "Where the heart rests, that is home 🏡",
+  "Same rain, different mountains 🌧️",
+  "The same moon shines everywhere 🌕",
+  "Starlight asks no one ✨",
+  "Time rewards the patient ⭐",
+  "Take your time, all is coming 🌻",
+  "Slow life, slow living 🍜",
+  "Light boat passes ten thousand mountains 🚣",
+  "Willows dark, flowers bright, another village 🌸",
+  "Life is a journey, I am a traveler 🚶",
+  "May you return as a child after sailing 🌅",
+  "Though winds blow strong, never give up 💪",
+  "Life is calm, but running brings wind 🌬️",
+  "Take it easy, no rush 🌱",
+  "The world is your oyster 🌍",
+  "Bloom where you are planted 🌷",
+  "Every cloud has a silver lining ☁️",
+  "Keep your face always toward the sunshine 🌻",
+  "In the middle of difficulty lies opportunity 🎯",
+  "And the day came when the risk to remain tight in a bud was more painful than the risk it took to blossom 🌸",
+  "The journey of a thousand miles begins with one step 🚶",
+  "Do not go where the path may lead, go instead where there is no path and leave a trail 🌿",
+  "Life is what happens when you're busy making other plans ⏳",
+  "Get busy living or get busy dying 🌅",
+  "Be the change you wish to see in the world 🌍",
+  "Darkness cannot drive out darkness, only light can do that ✨",
+  "Our greatest weakness lies in giving up 💪",
+  "The only way to do great work is to love what you do ❤️",
+  "Your time is limited, don't waste it living someone else's life ⏰",
+  "Stay hungry, stay foolish 🍎",
+  "Simplicity is the ultimate sophistication ✨",
+  "The best time to plant a tree was 20 years ago, the second best time is now 🌳",
+  "It does not matter how slowly you go as long as you do not stop 🐢",
+  "The future belongs to those who believe in the beauty of their dreams 🌟",
+  "You only live once, but if you do it right, once is enough 🦋",
+  "Life is really simple, but we insist on making it complicated 🧘",
+  "In three words I can sum up everything I've learned about life: it goes on 🌊",
+  "Be yourself; everyone else is already taken ✨",
+  "To live is the rarest thing in the world. Most people exist, that is all 🌟",
+  "We are all in the gutter, but some of us are looking at the stars ✨",
+  "The only person you are destined to become is the person you decide to be 🎯",
+  "Do not dwell in the past, do not dream of the future, concentrate the mind on the present moment 🧘",
+  "The present moment is filled with joy and happiness. If you are attentive, you will see it 🌸",
+  "Peace comes from within. Do not seek it without ☮️",
+  "The mind is everything. What you think you become 🧠",
+  "Happiness is not something ready made. It comes from your own actions 😊",
+  "Believe you can and you're halfway there 💪",
+  "It is during our darkest moments that we must focus to see the light ✨",
+  "In order to succeed, we must first believe that we can 🌟",
+  "The only limit to our realization of tomorrow will be our doubts of today 🌈",
+  "We may encounter many defeats but we must not be defeated 💪",
+  "Nothing is impossible, the word itself says 'I'm possible'! ✨",
+  "The best revenge is massive success 🎯",
+  "Success is not final, failure is not fatal: it is the courage to continue that counts 💪",
+  "I have not failed. I've just found 10,000 ways that won't work 🔧",
+  "Quality is not an act, it is a habit ✨",
+  "Well done is better than well said 🎯",
+  "Early to bed and early to rise makes a man healthy, wealthy, and wise 🌅",
+  "Lost time is never found again ⏰",
+  "Tell me and I forget. Teach me and I remember. Involve me and I learn 📚",
+  "An investment in knowledge pays the best interest 🎓",
+  "Education is the most powerful weapon which you can use to change the world 🌍",
+  "The beautiful thing about learning is that no one can take it away from you 🧠",
+  "The more that you read, the more things you will know. The more that you learn, the more places you'll go 📖",
+  "A room without books is like a body without a soul 📚",
+  "There is no friend as loyal as a book 📖",
+  "Reading is to the mind what exercise is to the body 💪",
+  "The only journey is the one within 🧘",
+  "Wherever you go becomes a part of you somehow 🌍",
+  "To travel is to live ✈️",
+  "The world is a book and those who do not travel read only one page 📖",
+  "Adventure is worthwhile in itself 🗺️",
+  "Life is either a daring adventure or nothing at all 🏔️",
+  "The purpose of our lives is to be happy 😊",
+  "Life is what we make it, always has been, always will be 🌟",
+  "You have within you right now, everything you need to deal with whatever the world can throw at you 💪",
+  "It's not what happens to you, but how you react to it that matters 🧘",
+  "When you change your thoughts, remember to also change your world 🌍",
+  "The only way to make sense out of change is to plunge into it, move with it, and join the dance 💃",
+  "Change the world by being yourself ✨",
+  "Yesterday is history, tomorrow is a mystery, today is a gift of God, which is why we call it the present 🎁",
+  "Count your age by friends, not years. Count your life by smiles, not tears 😊",
+  "It's not the destination, it's the journey 🚀",
+  "Life is like riding a bicycle. To keep your balance you must keep moving 🚲",
+  "The greatest glory in living lies not in never falling, but in rising every time we fall 💪",
+  "The best and most beautiful things in the world cannot be seen or even touched - they must be felt with the heart ❤️",
+  "Keep your face always toward the sunshine - and shadows will fall behind you 🌻",
+  "What lies behind us and what lies before us are tiny matters compared to what lies within us 🌟",
+  "Life is really simple, but we insist on making it complicated 🧘",
+  "Be the change that you wish to see in the world 🌍",
+  "In the end, it's not the years in your life that count. It's the life in your years 🌅",
+  "The purpose of human life is to serve, and to show compassion and the will to help others ❤️",
+  "Love and compassion are necessities, not luxuries. Without them, humanity cannot survive 💖",
+  "If you want others to be happy, practice compassion. If you want to be happy, practice compassion ☮️",
+  "Kindness in words creates confidence. Kindness in thinking creates profoundness. Kindness in giving creates love ❤️",
+  "No act of kindness, no matter how small, is ever wasted 🌸",
+  "Wherever there is a human being, there is an opportunity for a kindness 🤗",
+  "Tenderness and kindness are not signs of weakness and despair, but manifestations of strength and resolution 💪",
+  "A single act of kindness throws out roots in all directions, and the roots spring up and make new trees 🌳",
+  "Kindness is the language which the deaf can hear and the blind can see ❤️",
+  "Constant kindness can accomplish much. As the sun makes ice melt, kindness makes misunderstanding, mistrust, and hostility evaporate ☀️",
+  "That which does not kill us makes us stronger 💪",
+  "He who has a why to live can bear almost any how 🎯",
+  "There is no greater agony than bearing an untold story inside you 📖",
+  "You may encounter many defeats, but you must not be defeated 💪",
+  "I can be changed by what happens to me. But I refuse to be reduced by it 🌟",
+  "Do the best you can until you know better. Then when you know better, do better 📚",
+  "You never really learn much from hearing yourself speak 🗣️",
+  "The more I read, the more I acquire, the more certain I am that I know nothing 📖",
+  "Real knowledge is to know the extent of one's ignorance 🧠",
+  "I know that I know nothing 🧘",
+  "Wonder is the beginning of wisdom ✨",
+  "Education is the kindling of a flame, not the filling of a vessel 🔥",
+  "We are what we repeatedly do. Excellence, then, is not an act, but a habit ✨",
+  "It is not sufficient to know, we must also apply; it is not sufficient to will, we must also do 🎯",
+  "The happiness of your life depends upon the quality of your thoughts 😊",
+  "You have power over your mind - not outside events. Realize this, and you will find strength 💪",
+  "The best revenge is to be unlike him who performed the injury 🧘",
+  "Waste no more time arguing what a good man should be. Be one ✨",
+  "Dwell on the beauty of life. Watch the stars, and see yourself running with them ✨",
+  "The universe is change; our life is what our thoughts make it 🌌",
+  "The happiness of your life depends upon the quality of your thoughts 😊",
+  "Accept the things to which fate binds you, and love the people with whom fate brings you together, but do so with all your heart ❤️",
+  "Never let the future disturb you. You will meet it, if you have to, with the same weapons of reason which today arm you against the present 🛡️",
+  "Very little is needed to make a happy life; it is all within yourself, in your way of thinking 😊",
+  "When you arise in the morning, think of what a precious privilege it is to be alive - to breathe, to think, to enjoy, to love 🌅",
+  "Let us cultivate our garden 🌸",
+  "Man is condemned to be free 🦅",
+  "We are condemned to choose freedom 🌟",
+  "Existence precedes essence 🧘",
+  "You are what you do, not what you say you'll do 🎯",
+  "We are our choices ✨",
+  "The only way to deal with an unfree world is to become so absolutely free that your very existence is an act of rebellion 🗽",
+  "Freedom is what you do with what's been done to you 🦅",
+  "Man is not the creature of circumstances; circumstances are the creatures of men 💪",
+  "We are all architects of our own lives 🏗️",
+  "The limits of my language mean the limits of my world 🌍",
+  "Whereof one cannot speak, thereof one must be silent 🤫",
+  "The world is all that is the case 🌌",
+  "We see the world not as it is, but as we are 🧘",
+  "The eye sees only what the mind is prepared to comprehend 👁️",
+  "Reality is merely an illusion, albeit a very persistent one 🌌",
+  "The most beautiful thing we can experience is the mysterious ✨",
+  "Imagination is more important than knowledge 🧠",
+  "Two things are infinite: the universe and human stupidity; and I'm not sure about the universe 🌌",
+  "Life is like a box of chocolates. You never know what you're gonna get 🍫",
+  "Stupid is as stupid does 🤔",
+  "You have to do the best with what God gave you 💪",
+  "Mama always said life was like a box of chocolates. You never know what you're gonna get 🍫",
+  "Carpe diem. Seize the day, boys. Make your lives extraordinary 🎯",
+  "We don't read and write poetry because it's cute. We read and write poetry because we are members of the human race 📖",
+  "You are not special. You are not a beautiful or unique snowflake. You are the same decaying organic matter as everything else ❄️",
+  "The first rule of Fight Club is: you do not talk about Fight Club 🥊",
+  "This is your life, and it's ending one minute at a time ⏰",
+  "You are not your khakis. You are not your job. You are not how much money you have in the bank 💵",
+  "I love waking up in the morning not knowing what's gonna happen or who I'm gonna meet, where I'm gonna wind up 🚢",
+  "I'm the king of the world! 🚢",
+  "Keep your friends close, but your enemies closer 🤝",
+  "Great power comes with great responsibility 💪",
+  "Why so serious? 🃏",
+  "All we have to decide is what to do with the time that is given us ⏳",
+  "Even the smallest person can change the course of the future 🧝",
+  "The road goes ever on and on 🛤️",
+  "Not all those who wander are lost 🗺️",
+  "All that is gold does not glitter ✨",
+  "Even the wisest cannot see all ends 🧙",
+  "The greatest adventure is what lies ahead 🏔️",
+  "May the Force be with you ✨",
+  "Do or do not. There is no try 🎯",
+  "Your eyes can deceive you. Don't trust them 👁️",
+  "The fear of loss is a path to the dark side 🖤",
+  "Train yourself to let go of everything you fear to lose 🧘",
+  "In a hole in the ground there lived a hobbit 🏡",
+  "There is some good in this world, and it's worth fighting for 💪",
+  "So we beat on, boats against the current, borne back ceaselessly into the past ⛵",
+  "So many books, so little time 📚",
+  "Not all readers are leaders, but all leaders are readers 📖",
+  "A reader lives a thousand lives before he dies. The man who never reads lives only one 📚",
+  "We read to know we are not alone 📖",
+  "A reader lives a thousand lives 🌍",
+  "There is no friend as loyal as a book 📚",
+  "The person, be it gentleman or lady, who has not pleasure in a good novel, must be intolerably stupid 😊",
+  "We read to learn that we are not alone 📖",
+  "Reading is essential for those who seek to rise above the ordinary 📚",
+  "The more that you read, the more things you will know. The more that you learn, the more places you'll go 📖",
+  "You can find magic wherever you look. Sit back and relax, all you need is a book 📚",
+  "Once you learn to read, you will be forever free 📖",
+  "The man who does not read has no advantage over the man who cannot read 📚",
+  "Reading is to the mind what exercise is to the body 💪",
+  "A book is a dream that you hold in your hand 📖",
+  "There is more treasure in books than in all the pirate's loot on Treasure Island 🏴‍☠️",
+  "Books are a uniquely portable magic 📚",
+  "A great book should leave you with many experiences, and slightly exhausted at the end 📖",
+  "Books are the quietest and most constant of friends; they are the most accessible and wisest of counselors; and the most patient of teachers 📚",
+  "I find television very educating. Every time somebody turns on the set, I go into the other room and read a book 📖",
+  "The only thing that you absolutely have to know, is the location of the library 📚",
+  "Let us read, and let us dance; these two amusements will never do any harm to the world 💃",
+  "I have always imagined that Paradise will be a kind of library 📚",
+  "If you don't like to read, you haven't found the right book 📖",
+  "Books are mirrors: you only see in them what you already have inside you 📚",
+  "A book is a version of the world. If you do not like it, ignore it; or offer your own version in return 📖",
+  "The world was hers for the reading 📚",
+  "We are of opinion that instead of letting books grow moldy behind an iron grating, far from the vulgar gaze, it is better to let them wear out by being read 📖",
+  "I cannot live without books 📚",
+  "The best way to cheer yourself up is to try to cheer somebody else up 😊",
+  "The human race has only one really effective weapon and that is laughter 😂",
+  "Laughter is an instant vacation 🏖️",
+  "A good laugh heals a lot of hurts 😂",
+  "Laughter is the sun that drives winter from the human face ☀️",
+  "The most wasted of all days is one without laughter 😂",
+  "Laughter is the shortest distance between two people 😊",
+  "He who laughs last didn't get the joke 😂",
+  "I always keep a supply of stimulant handy in case I see a snake - which I also keep handy 🐍",
+  "If you live to be one hundred, you've got it made. Very few people die past that age 🎂",
+  "The best way to cheer yourself up is to try to cheer somebody else up 😊",
+  "Clothes make the man. Naked people have little or no influence on society 👔",
+  "Don't go around saying the world owes you a living. The world owes you nothing. It was here first 🌍",
+  "I have never let my schooling interfere with my education 📚",
+  "The man who does not read has no advantage over the man who cannot read 📖",
+  "It is better to keep your mouth closed and let people think you are a fool than to open it and remove all doubt 🤐",
+  "The secret of getting ahead is getting started 🚀",
+  "The secret of getting started is breaking your complex overwhelming tasks into small manageable tasks, and then starting on the first one 🎯",
+  "Continuous improvement is better than delayed perfection ✨",
+  "Do something wonderful, people may imitate it 🎉",
+  "I'm not upset that you lied to me, I'm upset that from now on I can't believe you 🤥",
+  "I think; therefore I am 🧠",
+  "The mind is the cause of all things 🧘",
+  "Happiness depends upon ourselves 😊",
+  "The happiness of your life depends upon the quality of your thoughts 🧠",
+  "The first rule is to keep an untroubled spirit. The second is to look things in the face and know them for what they are 🧘",
+  "Waste no more time arguing what a good man should be. Be one ✨",
+  "The best revenge is to be unlike him who performed the injury 🧘",
+  "You have power over your mind - not outside events. Realize this, and you will find strength 💪",
+  "Dwell on the beauty of life. Watch the stars, and see yourself running with them ✨",
+  "The universe is change; our life is what our thoughts make it 🌌",
+  "Very little is needed to make a happy life; it is all within yourself, in your way of thinking 😊",
+  "When you arise in the morning, think of what a precious privilege it is to be alive - to breathe, to think, to enjoy, to love 🌅",
+  "Never let the future disturb you. You will meet it, if you have to, with the same weapons of reason which today arm you against the present 🛡️",
+  "Accept the things to which fate binds you, and love the people with whom fate brings you together, but do so with all your heart ❤️",
+  "The best revenge is to be unlike him who performed the injury 🧘",
+  "We are all in the gutter, but some of us are looking at the stars ✨",
+  "Be yourself; everyone else is already taken ✨",
+  "To live is the rarest thing in the world. Most people exist, that is all 🌟",
+  "We are all in the gutter, but some of us are looking at the stars ✨",
+  "Always forgive your enemies; nothing annoys them so much 😊",
+  "Some cause happiness wherever they go; others whenever they go 😄",
+  "I have nothing to declare except my genius ✨",
+  "The only way to get rid of a temptation is to yield to it 😈",
+  "To love oneself is the beginning of a lifelong romance ❤️",
+  "I can resist everything except temptation 😈",
+  "We are all in the gutter, but some of us are looking at the stars ✨",
+  "Life is too important to be taken seriously 😊",
+  "A dream you dream alone is only a dream. A dream you dream together is reality ✨",
+  "When the power of love overcomes the love of power the world will know peace ☮️",
+  "One love, one heart ❤️",
+  "Get up, stand up, stand up for your rights 🎵",
+  "Every little thing gonna be alright ✨",
+  "Don't worry, about a thing. 'Cause every little thing gonna be alright 🌻",
+  "The sun is shining, the weather is sweet ☀️",
+  "Three little birds, sat on my window 🐦",
+  "Don't gain the world and lose your soul, wisdom is better than silver or gold 💎",
+  "Love the life you live. Live the life you love ❤️",
+  "You can fool some people sometimes, but you can't fool all the people all the time 😏",
+  "No woman, no cry 😢",
+  "Redemption song 🎵",
+  "I shot the sheriff, but I did not shoot the deputy 🎯",
+  "Get up, stand up, don't give up the fight 💪",
+  "One good thing about music, when it hits you, you feel no pain 🎵",
+  "One love, one heart, let's get together and feel alright ❤️"
+];
+
+/**
+ * 获取今日激励语句
+ */
+function getDailyQuote() {
+  const now = new Date();
+  const dayOfYear = Math.floor((now - new Date(now.getFullYear(), 0, 0)) / 86400000);
+  const quoteIndex = dayOfYear % dailyQuotes.length;
+  return dailyQuotes[quoteIndex];
 }
 
 /**
@@ -1167,8 +1478,10 @@ async function renderStaticDashboard() {
   // --- Header ---
   const greetingEl = document.getElementById('greeting');
   const dateEl     = document.getElementById('dateDisplay');
+  const dailyQuoteEl = document.getElementById('dailyQuote');
   if (greetingEl) greetingEl.textContent = getGreeting();
   if (dateEl)     dateEl.textContent     = getDateDisplay();
+  if (dailyQuoteEl) dailyQuoteEl.textContent = getDailyQuote();
 
   // --- Fetch tabs ---
   await fetchOpenTabs();
@@ -1639,11 +1952,8 @@ async function loadBookmarks() {
     function normalizeUrl(url) {
       try {
         const u = new URL(url);
-        let normalized = u.hostname + u.pathname;
-        if (normalized.endsWith('/')) {
-          normalized = normalized.slice(0, -1);
-        }
-        return normalized.toLowerCase();
+        // 保留完整URL用于去重，包括查询参数和哈希
+        return url.toLowerCase();
       } catch {
         return url.toLowerCase();
       }
@@ -1701,10 +2011,21 @@ async function loadBookmarks() {
       
       let folderContent = '';
       
+      // 文件夹内部的书签不去重，让用户看到所有文档
       directBookmarks.forEach(bookmark => {
-        const normalizedUrl = normalizeUrl(bookmark.url);
-        if (!seenUrls.has(normalizedUrl)) {
-          seenUrls.add(normalizedUrl);
+        const faviconUrl = getFaviconUrl(bookmark.url);
+        folderContent += `
+          <a href="${bookmark.url}" class="bookmark-item" title="${bookmark.title || bookmark.url}">
+            ${faviconUrl ? `<img src="${faviconUrl}" class="bookmark-favicon" alt="" data-favicon>` : ''}
+            <span class="bookmark-title">${bookmark.title || bookmark.url}</span>
+          </a>
+        `;
+      });
+
+      subFolders.forEach(subFolder => {
+        const subChildren = subFolder.children || [];
+        const subBookmarks = subChildren.filter(c => c.url);
+        subBookmarks.forEach(bookmark => {
           const faviconUrl = getFaviconUrl(bookmark.url);
           folderContent += `
             <a href="${bookmark.url}" class="bookmark-item" title="${bookmark.title || bookmark.url}">
@@ -1712,24 +2033,6 @@ async function loadBookmarks() {
               <span class="bookmark-title">${bookmark.title || bookmark.url}</span>
             </a>
           `;
-        }
-      });
-
-      subFolders.forEach(subFolder => {
-        const subChildren = subFolder.children || [];
-        const subBookmarks = subChildren.filter(c => c.url);
-        subBookmarks.forEach(bookmark => {
-          const normalizedUrl = normalizeUrl(bookmark.url);
-          if (!seenUrls.has(normalizedUrl)) {
-            seenUrls.add(normalizedUrl);
-            const faviconUrl = getFaviconUrl(bookmark.url);
-            folderContent += `
-              <a href="${bookmark.url}" class="bookmark-item" title="${bookmark.title || bookmark.url}">
-                ${faviconUrl ? `<img src="${faviconUrl}" class="bookmark-favicon" alt="" data-favicon>` : ''}
-                <span class="bookmark-title">${bookmark.title || bookmark.url}</span>
-              </a>
-            `;
-          }
         });
       });
 
@@ -1816,8 +2119,38 @@ async function loadBookmarks() {
           }
         });
 
+        // 切换打开状态
         dropdown.classList.toggle('open', !isOpen);
         btn.classList.toggle('open', !isOpen);
+
+        // 如果打开了，调整下拉菜单位置以避免超出屏幕
+        if (!isOpen) {
+          const rect = dropdown.getBoundingClientRect();
+          const container = document.querySelector('.container');
+          const containerRect = container.getBoundingClientRect();
+
+          // 如果右边超出容器，就右对齐
+          if (rect.right > containerRect.right) {
+            dropdown.style.left = 'auto';
+            dropdown.style.right = '0';
+          } else {
+            dropdown.style.left = '0';
+            dropdown.style.right = 'auto';
+          }
+
+          // 检查下面是否超出视口
+          if (rect.bottom > window.innerHeight) {
+            dropdown.style.top = 'auto';
+            dropdown.style.bottom = '100%';
+            dropdown.style.marginTop = '0';
+            dropdown.style.marginBottom = '2px';
+          } else {
+            dropdown.style.top = '100%';
+            dropdown.style.bottom = 'auto';
+            dropdown.style.marginTop = '2px';
+            dropdown.style.marginBottom = '0';
+          }
+        }
       });
     });
 
@@ -1925,9 +2258,10 @@ function saveBookmarkOrder() {
 }
 
 /* ----------------------------------------------------------------
-   GOOGLE SEARCH FUNCTIONALITY
+   搜索功能
    ---------------------------------------------------------------- */
 document.addEventListener('DOMContentLoaded', () => {
+  // Google 搜索
   const searchForm = document.getElementById('searchForm');
   const searchInput = document.getElementById('searchInput');
   
@@ -1950,6 +2284,29 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     
     searchInput.focus();
+  }
+  
+  // 百度搜索
+  const baiduSearchForm = document.getElementById('baiduSearchForm');
+  const baiduSearchInput = document.getElementById('baiduSearchInput');
+  
+  if (baiduSearchForm && baiduSearchInput) {
+    baiduSearchForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const query = baiduSearchInput.value.trim();
+      if (query) {
+        let url;
+        if (query.startsWith('http://') || query.startsWith('https://')) {
+          url = query;
+        } else if (query.includes('.') && !query.includes(' ')) {
+          url = 'https://' + query;
+        } else {
+          url = 'https://www.baidu.com/s?wd=' + encodeURIComponent(query);
+        }
+        chrome.tabs.create({ url: url });
+        baiduSearchInput.value = '';
+      }
+    });
   }
 });
 

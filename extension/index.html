@@ -36,21 +36,36 @@
       <h1 id="greeting"></h1>
       <!-- "Friday, April 4, 2026" — written by getDateDisplay() in app.js -->
       <div class="date" id="dateDisplay"></div>
+      <!-- 每日激励语句 -->
+      <div class="daily-quote" id="dailyQuote"></div>
       <!-- 天气和节日 -->
       <div class="weather-festival" id="weatherFestival"></div>
     </div>
   </header>
 
-  <!-- Google 搜索框 -->
+  <!-- 搜索框 -->
   <div class="search-container">
-    <form id="searchForm" class="search-form">
-      <div class="search-box">
-        <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
-        </svg>
-        <input type="text" id="searchInput" class="search-input" placeholder="Search Google or type a URL">
-      </div>
-    </form>
+    <div class="search-boxes">
+      <!-- Google 搜索框 -->
+      <form id="searchForm" class="search-form">
+        <div class="search-box">
+          <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+          </svg>
+          <input type="text" id="searchInput" class="search-input" placeholder="Search Google">
+        </div>
+      </form>
+      
+      <!-- 百度搜索框 -->
+      <form id="baiduSearchForm" class="search-form">
+        <div class="search-box">
+          <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+          </svg>
+          <input type="text" id="baiduSearchInput" class="search-input" placeholder="Search Baidu">
+        </div>
+      </form>
+    </div>
   </div>
 
   <!-- ================================================================
@@ -131,12 +146,6 @@
         <div class="stat-label">Open tabs</div>
       </div>
     </div>
-    <div class="last-refresh">
-      <span style="color: var(--muted); font-size: 11px;">
-        <a href="https://github.com/zarazhangrui/tab-out" target="_top" style="color: var(--muted); text-decoration: underline; text-underline-offset: 2px;">Tab Out</a> by <a href="https://x.com/zarazhangrui" target="_top" style="color: var(--muted); text-decoration: underline; text-underline-offset: 2px;">Zara</a>
-        · Standing on Zara's shoulders, enhanced by <a href="https://github.com/ShanWangkaka" target="_top" style="color: var(--muted); text-decoration: underline; text-underline-offset: 2px;">ShanWangkaka</a> 🌟
-      </span>
-    </div>
   </footer>
 
 </div><!-- end .container -->
@@ -145,13 +154,13 @@
      TOAST — floats above everything, used for action confirmations
      Hidden by default via CSS (opacity:0, translateY)
      ================================================================ -->
-<div class="toast" id="toast">
-  <!-- Checkmark circle icon (Heroicons outline) -->
-  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
-    <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-  </svg>
-  <span id="toastText"></span>
-</div>
+  <div class="toast" id="toast">
+    <!-- Checkmark circle icon (Heroicons outline) -->
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+    </svg>
+    <span id="toastText"></span>
+  </div>
 
 <!-- Personal config (gitignored) — defines LOCAL_LANDING_PAGE_PATTERNS etc. -->
 <!-- If the file doesn't exist, that's fine — app.js uses sensible defaults. -->
