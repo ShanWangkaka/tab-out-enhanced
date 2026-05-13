@@ -101,6 +101,30 @@
         <div class="section-line"></div>
         <div class="section-count" id="openTabsSectionCount"></div>
       </div>
+      
+      <!-- Batch Actions -->
+      <div class="batch-actions" id="batchActions">
+        <button class="batch-btn" id="selectAllBtn" data-action="select-all-tabs">Select All</button>
+        <button class="batch-btn" id="deselectAllBtn" data-action="deselect-all-tabs" style="display:none">Deselect All</button>
+        <button class="batch-btn danger" id="closeSelectedBtn" data-action="close-selected-tabs" style="display:none">Close Selected</button>
+      </div>
+      
+      <!-- Tab Stats -->
+      <div class="tab-stats" id="tabStats">
+        <div class="stat-card">
+          <div class="stat-num" id="statDomains">—</div>
+          <div class="stat-label">Domains</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num" id="statRealTabs">—</div>
+          <div class="stat-label">Real Tabs</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num" id="statSelected">0</div>
+          <div class="stat-label">Selected</div>
+        </div>
+      </div>
+      
       <div class="missions" id="openTabsMissions"></div>
     </div>
 
@@ -144,6 +168,14 @@
       <div class="stat">
         <div class="stat-num" id="statTabs">—</div>
         <div class="stat-label">Open tabs</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num" id="statSaved">—</div>
+        <div class="stat-label">Saved</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num" id="statArchived">—</div>
+        <div class="stat-label">Archived</div>
       </div>
     </div>
   </footer>

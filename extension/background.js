@@ -1,11 +1,12 @@
 /**
  * background.js — Service Worker for Badge Updates
  *
- * Chrome's "always-on" background script for Tab Out.
+ * Cross-browser background script for Tab Out.
+ * Compatible with Chrome, Edge, Brave, and Doubao browsers.
  * Its only job: keep the toolbar badge showing the current open tab count.
  *
  * Since we no longer have a server, we query chrome.tabs directly.
- * The badge counts real web tabs (skipping chrome:// and extension pages).
+ * The badge counts real web tabs (skipping internal and extension pages).
  *
  * Color coding gives a quick at-a-glance health signal:
  *   Green  (#3d7a4a) → 1–10 tabs  (focused, manageable)
@@ -13,13 +14,36 @@
  *   Red    (#b35a5a) → 21+ tabs   (time to cull!)
  */
 
+// ─── Browser Detection ───────────────────────────────────────────────────────
+
+/**
+ * Get the current browser name
+ */
+function getBrowserName() {
+  if (typeof chrome !== 'undefined' && chrome.runtime) {
+    // Check for Doubao browser first
+    const userAgent = navigator.userAgent.toLowerCase();
+    if (userAgent.includes('doubao') || userAgent.includes('豆包')) {
+      return 'doubao';
+    }
+    if (userAgent.includes('edge')) {
+      return 'edge';
+    }
+    if (userAgent.includes('brave')) {
+      return 'brave';
+    }
+    return 'chrome';
+  }
+  return 'unknown';
+}
+
 // ─── Badge updater ────────────────────────────────────────────────────────────
 
 /**
  * updateBadge()
  *
  * Counts open real-web tabs and updates the extension's toolbar badge.
- * "Real" tabs = not chrome://, not extension pages, not about:blank.
+ * "Real" tabs = not internal pages, not extension pages.
  */
 async function updateBadge() {
   try {
@@ -33,7 +57,9 @@ async function updateBadge() {
         !url.startsWith('chrome-extension://') &&
         !url.startsWith('about:') &&
         !url.startsWith('edge://') &&
-        !url.startsWith('brave://')
+        !url.startsWith('brave://') &&
+        !url.startsWith('doubao://') &&
+        !url.startsWith('db://')
       );
     }).length;
 
@@ -56,7 +82,9 @@ async function updateBadge() {
 
   } catch {
     // If something goes wrong, clear the badge rather than show stale data
-    chrome.action.setBadgeText({ text: '' });
+    try {
+      chrome.action.setBadgeText({ text: '' });
+    } catch {}
   }
 }
 

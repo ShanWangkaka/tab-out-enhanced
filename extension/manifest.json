@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
   "name": "Tab Out Enhanced",
-  "version": "1.0.0",
-  "description": "Keep tabs on your tabs with weather, bookmarks, search, and more! Beautiful new tab page with enhanced features.",
+  "version": "2.0.0",
+  "description": "Keep tabs on your tabs with weather, bookmarks, search, and more! Beautiful new tab page with enhanced features. Compatible with Chrome, Edge, Brave, and Doubao browsers.",
   "permissions": ["tabs", "activeTab", "storage", "bookmarks"],
   "host_permissions": ["https://wttr.in/*"],
   "chrome_url_overrides": { "newtab": "index.html" },
