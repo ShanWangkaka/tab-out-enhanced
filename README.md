@@ -21,13 +21,17 @@ Tab Out Enhanced is a beautiful Chrome extension that replaces your new tab page
 - **Pure Chrome extension** no server, no Node.js, no npm, no setup beyond loading the extension
 
 ### Enhanced Features (Enhanced)
-- 🌤️ **Real-time Weather** - Shows your local weather with cute emojis
+- 🌤️ **Real-time Weather** - Shows Beijing weather with cute emojis (no location permission needed!)
 - 📚 **Chrome Bookmarks** - Display your bookmarks at the top, with folder support and drag-to-reorder
-- 🔍 **Google Search** - Quick search bar to search Google or type URLs directly
+- 🔍 **Google & Baidu Search** - Dual search bars for quick searching
 - 🌿 **Beautiful Background** - Green plant leaf decoration for a fresh look
 - 🌙 **Dark Mode** - Eye-friendly dark theme
 - 🎆 **Spectacular Fireworks** - Enhanced confetti effects when closing tabs
 - 🎉 **Festival Reminders** - Automatic festival detection with cute animations
+- 🧮 **Tab Statistics** - Real-time stats showing domains, open tabs, and selected tabs
+- ✅ **Batch Operations** - Select all tabs, close selected tabs in bulk
+- 🌐 **Multi-browser Support** - Compatible with Chrome, Edge, Brave, and **Doubao Browser** (豆包浏览器)!
+- 🎯 **Smart Domain Grouping** - Friendly domain names (豆包, GitHub, YouTube, etc.)
 
 ---
 
@@ -55,9 +59,16 @@ Tab Out Enhanced is a beautiful Chrome extension that replaces your new tab page
 git clone <your-repo-url.git
 ```
 
-**2. Load the Chrome extension**
+**2. Load the extension**
 
-1. Open Chrome and go to `chrome://extensions`
+### For Chrome / Edge / Brave:
+1. Open browser and go to `chrome://extensions`
+2. Enable **Developer mode** (top-right toggle)
+3. Click **Load unpacked**
+4. Navigate to the `extension/` folder inside the cloned repo and select it
+
+### For Doubao Browser (豆包浏览器):
+1. Open Doubao Browser and go to `chrome://extensions` (or `doubao://extensions`)
 2. Enable **Developer mode** (top-right toggle)
 3. Click **Load unpacked**
 4. Navigate to the `extension/` folder inside the cloned repo and select it
@@ -73,16 +84,34 @@ You'll see Tab Out.
 ```
 You open a new tab
   -> Tab Out shows your open tabs grouped by domain
-  -> Homepages (Gmail, X, etc.) get their own group at the top
-  -> Real-time weather and festival info displayed
+  -> Homepages (Gmail, X, 豆包, etc.) get their own group at the top
+  -> Real-time Beijing weather and festival info displayed
   -> Your Chrome bookmarks at the top (drag to reorder!)
-  -> Google search bar for quick searching
+  -> Google + Baidu search bars for quick searching
+  -> View tab statistics (domains, open tabs, selected)
+  -> Batch select and close multiple tabs
   -> Click any tab title to jump to it
   -> Close groups you're done with (swoosh + spectacular fireworks!)
   -> Save tabs for later before closing them
 ```
 
-Everything runs inside the Chrome extension. Saved tabs are stored in `chrome.storage.local`. Weather data from wttr.in (free, no API key required).
+Everything runs inside the extension. Saved tabs are stored in `chrome.storage.local`. Weather data from wttr.in (free, no API key required, no location permission needed!).
+
+---
+
+## 📝 Changelog
+
+### v2.0.0 (Latest)
+- ✨ **Added Doubao Browser support** - 豆包浏览器完美兼容！
+- 🚫 **Removed geolocation request** - No more popups, uses Beijing weather by default
+- 🗑️ **Removed tab search box** - Cleaner interface
+- 📊 **Added tab statistics** - Real-time stats for domains, open tabs, selected tabs
+- ✅ **Enhanced batch operations** - Select all, close selected tabs in bulk
+- 🎯 **Smart domain grouping** - Friendly Chinese domain names (豆包, GitHub, YouTube, etc.)
+- 🎨 **Improved UI/UX** - Better spacing and visual hierarchy
+
+### v1.x.x
+- Initial enhanced version with weather, bookmarks, search, and beautiful UI
 
 ---
 
